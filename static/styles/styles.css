@@ -1,0 +1,86 @@
+ul {
+    list-style-type: none;
+    /* margin: 0;
+    padding: 0;
+    overflow: hidden; */
+}
+
+/* a {
+    float: left;
+    text-decoration: underline;
+    font-family: fantasy; 
+    font-size: large;
+    color:blue;
+    text-align: center;
+    padding: 6px;
+    text-decoration: none;
+} */
+
+/* p {
+    float: left;
+    text-decoration: underline;
+    font-family: fantasy; 
+    font-size: large;
+    color:blue;
+    text-align: center;
+    padding: 6px;
+    text-decoration: none;
+} */
+
+li, p {
+    float: left;
+    text-decoration: underline;
+    /* display: -moz-box; */
+    /* font-family: fantasy;  */
+    font-size: large;
+    color:black;
+    text-align: center;
+    /* padding: 6px; */
+    text-decoration: none;
+}
+
+body {
+    text-align: left;
+    margin: 0.5 em 0; 
+    background-color: rgb(173, 162, 162);
+}
+
+input, label {
+    text-align: left;
+    font-size: x-large;
+    padding-top: 10px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+span {
+    font-size: small;
+    font-family: cursive;
+    text-align: left;
+    margin: 0; color: crimson; 
+}
+#size_and_color {
+    padding-top: 10px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    color: rgb(156, 156, 238) ;
+}
+
+h1 {
+    text-align:center; text-decoration: underline; font-size: 42px;
+    font-family: fantasy; text-emphasis-style: strong;
+}
+
+h2, a {
+    text-align:left; text-decoration: underline; font-size: 30px;
+    font-family: cursive; text-emphasis-style: strong;
+}
+
+footer {
+    text-align:left; 
+    font-size: medium;
+}
+
+
