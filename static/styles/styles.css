@@ -1,86 +1,385 @@
-ul {
-    list-style-type: none;
-    /* margin: 0;
-    padding: 0;
-    overflow: hidden; */
+/*  GLOBAL/BASE STYLES  */
+:root {
+  --accent: #95c76f;
 }
 
-/* a {
-    float: left;
-    text-decoration: underline;
-    font-family: fantasy; 
-    font-size: large;
-    color:blue;
-    text-align: center;
-    padding: 6px;
-    text-decoration: none;
-} */
-
-/* p {
-    float: left;
-    text-decoration: underline;
-    font-family: fantasy; 
-    font-size: large;
-    color:blue;
-    text-align: center;
-    padding: 6px;
-    text-decoration: none;
-} */
-
-li, p {
-    float: left;
-    text-decoration: underline;
-    /* display: -moz-box; */
-    /* font-family: fantasy;  */
-    font-size: large;
-    color:black;
-    text-align: center;
-    /* padding: 6px; */
-    text-decoration: none;
+::selection {
+  background: #95c76f;
 }
 
-body {
-    text-align: left;
-    margin: 0.5 em 0; 
-    background-color: rgb(173, 162, 162);
+.error {
+  width: 100%;
 }
 
-input, label {
-    text-align: left;
-    font-size: x-large;
-    padding-top: 10px; 
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+b.error {
+  color: #aeaeae;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 15px;
 }
 
-span {
-    font-size: small;
-    font-family: cursive;
-    text-align: left;
-    margin: 0; color: crimson; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #2e2e30;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  rgba(255,255,255,0.1);
+  background-color: #fffdf8;
+  font-family: 'NeueHaasGrotesk-Regular', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
+  /*font: -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;*/
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a, a:link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: var(--accent);
+  transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+}
+
+h2 {
+  color: #95c76f;
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.spacing {
+  padding-right: 25px;
+}
+
+.header {
+  clear: both;
+  width: 100%;
+  padding: 25px 0 40px 0;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+}
+
+h1.title {
+  font-size: 28px;
+  line-height: 2em;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
+}
+
+.container {
+  width: 75%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  flex-flow: column;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+}
+
 #size_and_color {
-    padding-top: 10px; 
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    color: rgb(156, 156, 238) ;
+  padding-top: 10px; 
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  color: rgb(156, 156, 238) ;
 }
 
-h1 {
-    text-align:center; text-decoration: underline; font-size: 42px;
-    font-family: fantasy; text-emphasis-style: strong;
+.newpost span {
+  font-size: small;
+  font-family: cursive;
+  text-align: left;
+  margin: 0; color: crimson; 
 }
 
-h2, a {
-    text-align:left; text-decoration: underline; font-size: 30px;
-    font-family: cursive; text-emphasis-style: strong;
+.blog {
+  height: auto;
+  margin: 50px 0;
 }
 
-footer {
-    text-align:left; 
-    font-size: medium;
+.blog h2 {
+  color: #95c76f;
+  font-weight: 500;
+  letter-spacing: 0px;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
 }
 
+.blog h2:hover {
+  color: #ce934d;
+  transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+}
 
+b.body-text {
+  color: #000;
+  font-size: 16px;
+}
+
+b.user {
+  color: #727272;
+  font-size: 14px;
+}
+
+.footer {
+  height: 200px;
+  width: 100%;
+  background-color: #
+}
+
+/* INDEX PAGE STYLES */
+.index {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.index h1 {
+  font-size: 24px;;
+}
+
+.index b.users {
+  font-size: 18px;
+  padding: 5px 0px;
+}
+
+/* BLOG PAGE STYLES */
+.blog {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.blog-text {
+  clear: both;
+  height: 100%;
+  min-width: 75vw;
+  max-width: 30em;
+}
+
+.blog h1 {
+  font-size: 24px;
+}
+
+.blog h2 {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, SF UI, Helvetica Neue, sans-serif;
+}
+
+/* blog PAGE STYLES */
+h1.blog-header {
+  margin: 0;
+  padding: 0 0 25px 0;
+}
+
+input[type=text] {
+  border: 0;
+  outline: 0;
+  color: #000;
+  width: 100%;
+  float: right;
+  padding: 5px;
+  margin: 15px 0;
+  line-height: normal;
+  background: transparent;
+  border-bottom: 1px solid #313842;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=text]:focus {
+  border-color: #74a7ff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=password] {
+  border: 0;
+  outline: 0;
+  color: #000;
+  width: 100%;
+  float: right;
+  padding: 5px;
+  margin: 15px 0;
+  line-height: normal;
+  background: transparent;
+  border-bottom: 1px solid #313842;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=password]:focus {
+  border-color: #74a7ff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+textarea {
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+	border: 1px solid #ccc;
+}
+
+input[type=submit] {
+  color: #fff;
+  width: 100%;
+  border: 0 none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 400;
+  padding: 10px 0px;
+  border-radius: 10px;
+  background: #95c76f;
+  visibility: visible;
+  -webkit-border-radius: 5px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+input[type=submit]:hover {
+  background: #aeaeae;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+}
+
+/* LOGIN PAGE STYLES */
+.container .login {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 75px;
+}
+
+.login h1 {
+  font-size: 24px;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.container .login p {
+  font-size: 14px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.login p.signup-text {
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* NEW POST PAGE */
+.new-post {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.new-post h1 {
+  font-size: 24px;;
+}
+
+/* SIGNUP PAGE STYLES */
+.container .signup {
+  width: 340px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 75px;
+}
+
+.signup h1 {
+  font-size: 26px;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.container .signup b {
+  font-size: 14px;
+  /*text-align: center;*/
+}
+
+b.signup-text {
+  padding-top: 20px;
+}
+
+/* INDIVIDUAL USERS PAGE STYLES */
+.single-user {
+  clear: both;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  display: table-cell;
+  padding-right: 1.5rem;
+}
+
+.single-user-text {
+  clear: both;
+  height: 100%;
+  min-width: 75vw;
+  max-width: 30em;
+}
+
+.single-user h1 {
+  font-size: 24px;
+}
+
+.single-user h2 {
+  font-size: 24px;
+}
+
+.user {
+  color: #aeaeae;
+  font-size: 12px;
+}

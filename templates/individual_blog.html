@@ -2,12 +2,14 @@
 
 {% block content %}
 
-<h1><strong>Blog Post</strong></h1>
+<h1><strong>Individual Blog Posts</strong></h1>
     <ul>
         <li>
         <h2>{{blog.title}}</h2>
         
         <p>{{blog.body}}</p>
+
+        <p class='user'>Author: <a href='/blog?userid={{user_id}'>{{ user }}</a></p>
         </li>
     </ul>
 

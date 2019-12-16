@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <div class='single-user wow fadeIn'>
+
+        <h1>User Posts</h1>
+
+        <hr>
+        {% for blog in blogs %}
+        <div class='post'>
+
+          <a href='/blog?id={{blog.id}}'><h2>{{ blog.title }}</h2></a>
+          <p class='body-text'>{{ blog.body }}</p>
+          <p class='user'>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
+
+        </div>
+        {% endfor %}
+      </div>
+{% endblock %}
