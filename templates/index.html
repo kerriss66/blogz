@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-      <div class='index'>
-        <h1>Just Visiting</h1>
-        <hr>
-        {% for user in users %}
-        <p class='users'><a href='/blog?userid={{user.id}}'>{{ user.username }}</a></p>
-        {% endfor %}
-      </div>
+<head>
+  <style>
+    body {
+      text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+    }
+    h1 {
+      text-align:center; text-decoration: underline; font-size: 42px;
+      font-family: fantasy; text-emphasis-style: strong;
+    }    
+    p {
+      float: left; text-decoration: underline; color:black; font-size: 18px;
+      text-align: center; padding: 6px; text-decoration: none;
+    }
+    footer { text-align:left; font-size: medium;
+    }
+  </style>
+</head>
+  <body>
+    <div>
+      <h1>Just Visiting</h1>
+      <hr>
+{% for user in users %}
+  <p><a href='/blog?userid={{user.id}}'>{{ user.username }}</a></p>
+  <br></br><br></br>
+{% endfor %}
+    </div>
+  </body>
+
 {% endblock %}
+<footer>
+  &copy; 2019 Kerri Sierra-Scott
+</footer>

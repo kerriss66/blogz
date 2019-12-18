@@ -1,16 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1><strong>Individual Blog Posts</strong></h1>
-    <ul>
-        <li>
-        <h2>{{blog.title}}</h2>
-        
-        <p>{{blog.body}}</p>
-
-        <p class='user'>Author: <a href='/blog?userid={{user_id}'>{{ user }}</a></p>
-        </li>
-    </ul>
+<head>
+    <style>
+        body {
+            text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+        }
+        h1 {
+            text-align:center; text-decoration: underline; font-size: 42px;
+            font-family: fantasy; text-emphasis-style: strong;
+        }    
+        h2 {
+            text-align:left; text-decoration: underline; font-size: 18px;
+            font-family: cursive; text-emphasis-style: strong;
+        }
+        p {
+            float: left; text-decoration: underline; color:black;
+            text-align: center; padding: 6px; text-decoration: none;
+        }
+        footer { text-align:left; font-size: medium;
+        }
+    </style>
+</head>
+    <h1>Individual Blog Post</h1>
+    <hr>
+        <div>
+            <h2>{{blog.title}}</h2>
+            <p>{{blog.body}}</p>
+            <br></br><br></br>
+            <p>Author: <a href='/blog?userid={{user_id}'>{{user}}</a></p>
+            <br></br><br></br>
+        </div>    
 
 {% endblock %}
+<footer>
+    &copy; 2019 Kerri Sierra-Scott
+</footer>
+  

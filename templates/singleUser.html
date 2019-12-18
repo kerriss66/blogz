@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-      <div class='single-user wow fadeIn'>
-
+<head>
+  <style>
+        body {
+            text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+        }
+        h1 {
+            text-align:center; text-decoration: underline; font-size: 42px;
+            font-family: fantasy; text-emphasis-style: strong;
+        }
+        h2 {
+            text-align:left; text-decoration: underline; font-size: 18px;
+            font-family: cursive; text-emphasis-style: strong;
+        }    
+        p {
+            float: left; text-decoration: underline; color:black;
+            text-align: center; padding: 6px; text-decoration: none;
+        }
+  </style>
+</head>
+      <div>
         <h1>User Posts</h1>
-
         <hr>
         {% for blog in blogs %}
-        <div class='post'>
-
+        <div>
           <a href='/blog?id={{blog.id}}'><h2>{{ blog.title }}</h2></a>
-          <p class='body-text'>{{ blog.body }}</p>
-          <p class='user'>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
-
+          <br></br>
+          <p>{{ blog.body }}</p>
+          <br></br>      <br></br>
+          <p>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
         </div>
         {% endfor %}
       </div>

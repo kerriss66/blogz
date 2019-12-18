@@ -1,29 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-   
-    <div class='new-post'>
-        <h1 class='blog-header'><strong>Add a Blog Entry </strong></h1>
+   <head>
+    <style>
+        body {
+            text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+        }
+        h1 {
+            text-align:center; text-decoration: underline; font-size: 42px;
+            font-family: fantasy; text-emphasis-style: strong;
+        }    
+        p {
+            float: left; text-decoration: underline; color:black;
+            text-align: center; padding: 6px; text-decoration: none;
+        }
+        input {
+            text-align: left;
+            font-size: large;
+            padding-top: 10px; 
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+            span {
+            font-size: medium;
+            font-family: cursive;
+            text-align: left;
+            margin: 0; color: crimson; 
+        }
+        #size_and_color {
+            padding-top: 10px; 
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            color: rgb(156, 156, 238) ;
+        }
+        </style>
+   </head>
+    <div>
+        <h1><strong>Add a Blog Entry </strong></h1>
         <form action='/newpost' method='POST'>
             <section>
-            <label for='title'>Title for your new blog post:</label>
-            <br></br>    
-                <input name='title' type='text' value='{{ title }}'>
-            </label>
-                <span class='error'>{{title_error}}</span>
+                <label for='title'>Title for your new blog post:</label>
+                <br></br>    
+                    <input name='title' type='text' value='{{ title }}'>
+                </label>
+                    <span class='error'>{{title_error}}</span>
+                </section>
+                <br></br>
+                <section>
+                <label for='body'>Your new blog post:</label>
+                <br></br>    
+                    <input name='body' type='text' value='{{ body }}'>
+                </label>
+                    <span class='error'>{{body_error}}</span>
             </section>
-            <br></br>
-            <section>
-            <label for='body'>Your new blog post:</label>
-            <br></br>    
-                <input name='body' type='text' value='{{ body }}'>
-            </label>
-                <span class='error'>{{body_error}}</span>
-            </section>
-            <br></br>
-                <input id='size_and_color' type='submit' value='Add Blog Post'>
-            <br></br>
+                <br></br>
+                    <input id='size_and_color' type='submit' value='Add Blog Post'>
+                <br></br>
         </form>
-    </body>
-</head>     
+    </div>
 
 {% endblock %}

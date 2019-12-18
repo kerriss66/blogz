@@ -1,22 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1><strong>Blog Posts</strong></h1>
-
+<head>
+    <style>
+        body {
+            text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+        }
+        h1 {
+            text-align:center; text-decoration: underline; font-size: 42px;
+            font-family: fantasy; text-emphasis-style: strong;
+        }    
+        h2 {
+            text-align:left; text-decoration: underline; font-size: 18px;
+            font-family: cursive; text-emphasis-style: strong;
+        }
+        p {
+            float: left; text-decoration: underline; color:black;
+            text-align: center; padding: 6px; text-decoration: none;
+        }
+        footer { text-align:left; font-size: medium;
+        }
+    </style>
+</head>
+    <body>
+        <h1>Blog Posts</h1>
+        <hr>
 {% if blogs|length == 0 %}
-<p>No Posts Yet - Add A Blog Entry Now</p>
+    <p>No Posts Yet - Add A Blog Entry Now</p>
+    <br></br>
 {% endif %}   
 
-    {% for blog in blogs %}
-    <div class='blog'>
-        <h2><strong><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></strong></h2>
-        <p class='body-text'>{{blog.body}}</p>
-        <p class='user'>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
+{% for blog in blogs %}
+    <div> 
+        <h2><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></h2>
+        <p>{{blog.body}}</p><br></br><br></br>
+        <p>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
+        <br></br><br></br>
     </div>
-    {% endfor %}
-
+{% endfor %}
+    </body>
 {% endblock %}
+<footer>
+    &copy; 2019 Kerri Sierra-Scott
+</footer>
 
 
 

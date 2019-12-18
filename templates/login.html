@@ -1,23 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-      <div class='login'>
-
-        <h1>Login</h1>
-
+<head>
+  <style>
+    body {
+      text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+    }
+    h1 {
+      text-align:center; text-decoration: underline; font-size: 42px;
+      font-family: fantasy; text-emphasis-style: strong;
+    }    
+    p {
+      float: left; text-decoration: underline; color:black;
+      text-align: center; padding: 6px; text-decoration: none;
+    }
+    input {
+      text-align: left;
+      font-size: large;
+      padding-top: 10px; 
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+    }
+    span {
+      font-size: medium;
+      font-family: cursive;
+      text-align: left;
+      margin: 0; color: crimson; 
+    }
+  </style>
+</head>
+      <div>
+        <h1>Blogz! Login</h1>
+        <hr>
+          <p  style="color:rgb(88, 15, 88);  font-size: large;"><strong> 
+            If you do not already have an account, Signup to Access Blog Posts - 
+          </strong>
+          &nbsp;
+          <a href='/signup'>Sign Up</a></p>
+          <br></br><br></br>
         <form action='/login' method='POST'>
-
           <input name='username' type='text' value='{{ username }}' placeholder='Username'>
+          <br></br>
           <p class='error'>{{ user_error }}</p>
-
+          <br></br><br></br>
           <input name='password' type='password' placeholder='Password'>
+          <br></br>
           <p class='error'>{{ pass_error }}</p>
-
+          <br></br><br></br>
           <input type='submit' value='login'>
-
         </form>
-
-        <p class='signup-text'>Please Signup to Access Blog Posts<a href='/signup'>Sign Up</a></p>
-
       </div>
 {% endblock %}

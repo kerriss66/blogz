@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-    <head>
-        <link href='{{ url_for('static', filename='styles/styles.css') }}' rel='stylesheet' type='text/css' >
-        <!-- <link href='static/styles/styles.css' rel='stylesheet' type= 'text/css'  > -->
+    <head>        
         <title>{{title}}</title>
+        <style>
+            body {
+                margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+            }
+            h1 {
+                text-align:center; text-decoration: underline; font-size: 42px;
+                font-family: fantasy; text-emphasis-style: strong;
+            }    
+            h2 {
+                text-align:left; text-decoration: underline; font-size: 18px;
+                font-family: cursive; text-emphasis-style: strong;
+            }
+            p {
+                float: left; text-decoration: underline; color:black;
+                text-align: center; padding: 6px; text-decoration: none;
+            }
+            footer { text-align:left; font-size: medium;
+            }
+            * {box-sizing: border-box}
+            body {font-family: Arial, Helvetica, sans-serif;}
+            .navbar {
+                width: 100%; background-color: #555;
+                overflow: auto;
+            }
+            .navbar a {
+                float: left;padding: 12px;color: white;
+                text-decoration: none; font-size: 17px;
+                width: 25%; text-align: center;
+            }
+            .navbar a:hover {
+            background-color: #000;
+            }
+            @media screen and (max-width: 500px) {
+                .navbar a {
+                    float: none;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+        </style>
     </head>
-    <body>
-        <div class='container'>
+        <body>
+            <div class='navbar'>
+                <a href='/blog'>All Blog Posts</a> 
+                <a href='/newpost'>New Blog Post</a> 
+                <a href='/login'>Login</a> 
+                <a href='/logout'>Logout</a>
+            </div>
+                <h1><a href='/'>Blogz!</a></h1>
 
-            <nav class='header'>
-      
-              <h1 class='title'><a href='/'>Blogz!</a></h1>
-              <a href='/blog' class='left spacing'>View All Blog Posts</a>
-              <a href='/newpost' class='left'>New Blog Post</a>
-              <a href='/logout' class='right'><i class='fa fa-sign-out'></i> Logout</a>
-              <a href='/login' class='right spacing'><i class='fa fa-sign-in'></i> Login</a>
-      
-            </nav>
-            {% block content %}
-            {% endblock %}
-          </div>
+{% block content %}
+{% endblock %}
 
-    </body>
+        </body>
 </html>
+<footer>
+    &copy; 2019 Kerri Sierra-Scott
+</footer>

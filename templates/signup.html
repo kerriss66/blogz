@@ -1,24 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-      <div class='signup'>
+<head>
+  <style>
+        body {
+            text-align: left; margin: 0.5 em 0; background-color: rgb(173, 162, 162);
+        }
+        h1 {
+            text-align:center; text-decoration: underline; font-size: 42px;
+            font-family: fantasy; text-emphasis-style: strong;
+        }    
+        p {
+            float: left; text-decoration: underline; color:black;
+            text-align: center; padding: 6px; text-decoration: none;
+        }
+        input {
+            text-align: left;
+            font-size: large;
+            padding-top: 10px; 
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+            span {
+            font-size: medium;
+            font-family: cursive;
+            text-align: left;
+            margin: 0; color: crimson; 
+        }
+    </style>
+</head>
+  <div>
 
-        <h1>Sign up to View/Post on Blogz!</h1>
+    <h1>Sign up to View/Post on Blogz!</h1>
 
-        <form action='/signup' method='POST'>
+    <form action='/signup' method='POST'>
 
-          <input name='username' type='text' value='{{ username }}' placeholder='Username'>
-          <p class='error'>{{ user_error }}</p>
+      <input name='username' type='text' value='{{ username }}' placeholder='Username'>
+      <br></br>
+      <p class='error'>{{ user_error }}</p>
+      <br></br><br></br>
+      <input name='password' type='password' value='{{ password }}' placeholder='Password'>
+      <br></br>
+      <p class='error'>{{ pass_error }}</p>
+      <br></br><br></br>
+      <input name='verify' type='password' value='{{ verify }}' placeholder='Verify Password'>
+      <br></br>
+      <p class='error'>{{ reenter_error }}</p>
+      <br></br><br></br>
+      <input type='submit' value='Sign Up'>
 
-          <input name='password' type='password' value='{{ password }}' placeholder='Password'>
-          <p class='error'>{{ pass_error }}</p>
+    </form>
 
-          <input name='verify' type='password' value='{{ verify }}' placeholder='Verify Password'>
-          <p class='error'>{{ reenter_error }}</p>
-
-          <input type='submit' value='Sign Up'>
-
-        </form>
-
-      </div>
+  </div>
 {% endblock %}
