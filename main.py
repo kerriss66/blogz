@@ -24,13 +24,13 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    # pw_hash = db.Column(db.String(120))
+    reenter = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref = 'owner')
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        # self.pw_hash = make_pw_hash(password)
+
 
 @app.before_request
 def require_login():
@@ -54,17 +54,19 @@ def signup():
     
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
-        verify = request.form['verify']
-        existing_user = User.query.filter_by(username=username).first()
-
         if (' ' in username) or (not username) or (username.strip() == '') or (len(username) <= 2) or (len(username) >=21):
             user_error = 'Please enter a username between 3 and 20 characters and no spaces.'
             username = ''
+        
+        password = request.form['password']
         if (' ' in password) or (not password) or (password.strip() == '') or (len(password) <= 2) or (len(password) >=21):
             pass_error = 'Please enter a password between 3 and 20 characters and no spaces.'
-        if (verify != password):
-            reenter_error = 'Please reenter your same password.'
+        
+        reenter = request.form['reenter']
+        if (reenter != password):
+            reenter_error = "Please reenter your same password."
+            
+        existing_user = User.query.filter_by(username=username).first()        
         if existing_user:
             user_error = 'Duplicate User'
 
@@ -86,31 +88,29 @@ def login():
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
         
-        # if user and check_pw_hash(password, user.pw_hash):
-        if user and password:
-            session['username'] = username
-            flash('Logged in')
-            return redirect('/newpost')
-        # if not user and not check_pw_hash(password, user.pw_hash):
         if not user and not password:
             flash('User password incorrect, or user does not exist', 'error')
             return redirect('/login')
 
+        else:
+            session['username'] = username
+            flash('Logged in')
+            return redirect('/newpost')
+
     return render_template('login.html')
 
-@app.route('/blog', methods=['POST', 'GET'])
+@app.route('/blog')
 def blog():
     blog_id = request.args.get('id')
     user_id = request.args.get('userid')
-    # all_blogs = Blog.query.order_by(Blog.id())
+    all_blogs = Blog.query.all()
 
     if blog_id:
-        blog = Blog.query.filter_by(id=blog_id).first()
-        return render_template('individual_blog.html', title=blog.title, body=blog.body, user=blog.owner.username, user_id=blog.owner_id)
+        all_blogs = Blog.query.filter_by(id=blog_id).all()
     if user_id:
-        blogs = Blog.query.filter_by(owner_id=user_id).all()
-        return render_template('user.html', blogs=blogs)
-    # return render_template('blog.html', all_blogs=all_blogs)
+        all_blogs = Blog.query.filter_by(owner_id=user_id).all()
+
+    return render_template('blog.html', blogs=all_blogs)
 
 @app.route('/newpost', methods=['POST','GET'])
 def newpost():
@@ -139,7 +139,7 @@ def newpost():
         else:
             return render_template('newpost.html', title_error=title_error, body_error=body_error, title=title, body=body)
 
-    # return render_template('newpost.html')
+    return render_template('newpost.html')
     
 @app.route('/logout')
 def logout():

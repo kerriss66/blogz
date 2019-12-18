@@ -28,17 +28,19 @@
 {% if blogs|length == 0 %}
     <p>No Posts Yet - Add A Blog Entry Now</p>
     <br></br>
-{% endif %}   
+{% else %}   
 
-{% for blog in blogs %}
-    <div> 
-        <h2><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></h2>
-        <p>{{blog.body}}</p><br></br><br></br>
-        <p>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
-        <br></br><br></br>
-    </div>
-{% endfor %}
+    {% for blog in blogs %}
+        <div> 
+            <h2><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></h2>
+            <p>{{blog.body}}</p><br></br><br></br>
+            <p>Author: <a href='/blog?userid={{blog.owner_id}}'>{{ blog.owner.username }}</a></p>
+            <br></br><br></br>
+        </div>
+    {% endfor %}
     </body>
+  
+{% endif %}
 {% endblock %}
 <footer>
     &copy; 2019 Kerri Sierra-Scott
