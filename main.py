@@ -24,7 +24,6 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    reenter = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref = 'owner')
 
     def __init__(self, username, password):
@@ -34,8 +33,8 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes =['login', 'blog', 'index', 'signup']
-    print(session)
+    allowed_routes =['login', 'signup', 'blog', 'index']
+    # print(session)
 
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect ('/login')
@@ -47,57 +46,73 @@ def index():
 
 
 @app.route('/signup', methods=['POST', 'GET'])
-def signup(): 
+def signup():
     user_error = ''
     pass_error = ''
     reenter_error = ''
-    
+
     if request.method == 'POST':
         username = request.form['username']
-        if (' ' in username) or (not username) or (username.strip() == '') or (len(username) <= 2) or (len(username) >=21):
-            user_error = 'Please enter a username between 3 and 20 characters and no spaces.'
-            username = ''
-        
         password = request.form['password']
-        if (' ' in password) or (not password) or (password.strip() == '') or (len(password) <= 2) or (len(password) >=21):
-            pass_error = 'Please enter a password between 3 and 20 characters and no spaces.'
-        
         reenter = request.form['reenter']
-        if (reenter != password):
-            reenter_error = "Please reenter your same password."
-            
-        existing_user = User.query.filter_by(username=username).first()        
-        if existing_user:
-            user_error = 'Duplicate User'
+        exist = User.query.filter_by(username=username).first()
 
-        if not existing_user:
+        if (username == '') or (len(username) < 3) or (len(username) > 20) or (' ' in username):
+            user_error = 'Please enter a username between 3 & 20 characters with no spaces.'
+
+        if (password == '') or (len(password) < 3) or (len(password) > 20) or (' ' in password):
+            pass_error = 'Please enter a password between 3 & 20 characters with no spaces.'
+   
+        if password != reenter or reenter == '':
+            reenter_error = 'Passwords must match.'
+
+        if exist:
+            user_error = 'Duplicate User.'
+
+        if (len(username) >= 3) and (len(password) >= 3) and (password == reenter) and not exist:
             new_user = User(username, password)
             db.session.add(new_user)
             db.session.commit()
-            session['username']= username
+            session['username'] = username
             return redirect('/newpost')
         else:
-            return render_template('signup.html', username=username, user_error=user_error, pass_error=pass_error, reenter_error=reenter_error)
-            
+            return render_template('signup.html',
+            username=username,
+            user_error=user_error,
+            pass_error=pass_error,
+            reenter_error=reenter_error
+            )
+
     return render_template('signup.html')
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = User.query.filter_by(username=username).first()
-        
-        if not user and not password:
-            flash('User password incorrect, or user does not exist', 'error')
-            return redirect('/login')
+    username = ''
+    user_error = ''
+    pass_error = ''
 
-        else:
+    if request.method == 'POST':
+        password = request.form['password']
+        username = request.form['username']
+        user = User.query.filter_by(username=username).first()
+
+        if (username == '') or (password == ''):
+            user_error = 'Please enter your username and/or password. If you do not have an account, please signup for one.'
+            return redirect ('/login')
+
+        if user and password:
             session['username'] = username
-            flash('Logged in')
             return redirect('/newpost')
 
+        if not user:
+            user_error = 'Please signup for an account.'
+            return redirect('/signup')
+        else:
+            user_error='Your username or password was incorrect.'
+            return render_template('login.html')
+
     return render_template('login.html')
+
 
 @app.route('/blog')
 def blog():
